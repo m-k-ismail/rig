@@ -12,10 +12,10 @@ import java.util.ArrayList;
 @Service
 public class ApplicationUserDetailsService implements UserDetailsService {
 
-    @Value("${security.username}")
+    @Value("${jwt.security.username}")
     private String user;
 
-    @Value("${security.password}")
+    @Value("${jwt.security.password}")
     private String password;
 
     @Override
