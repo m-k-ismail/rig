@@ -14,4 +14,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
             countQuery = "SELECT count(*) FROM ORDERS",
             nativeQuery = true)
     List<Customer> getCustomerWithOrdersPagination(Long customerId, Pageable pageable);
+
+    Customer getCustomerByEmail(String email);
 }

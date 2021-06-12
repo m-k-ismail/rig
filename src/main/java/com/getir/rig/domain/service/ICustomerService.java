@@ -13,4 +13,6 @@ public interface ICustomerService {
 
     Customer getCustomer(Long customerId);
 
+    Customer getCustomer(String email);
+
 }

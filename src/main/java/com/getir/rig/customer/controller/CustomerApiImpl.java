@@ -40,5 +40,4 @@ public class CustomerApiImpl implements CustomerApi {
         return new ResponseEntity<>(customerRES, HttpStatus.OK);
     }
 
-
 }

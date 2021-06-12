@@ -1,5 +1,6 @@
 package com.getir.rig.customer.service;
 
+import com.getir.rig.customer.validation.CustomerValidation;
 import com.getir.rig.domain.model.customer.Customer;
 import com.getir.rig.domain.model.customer.CustomerSearchResult;
 import com.getir.rig.domain.repository.CustomerRepository;
@@ -18,14 +19,18 @@ import java.util.Optional;
 public class CustomerServiceImpl implements ICustomerService {
 
     private CustomerRepository customerRepository;
+    private CustomerValidation customerValidation;
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerValidation customerValidation) {
         this.customerRepository = customerRepository;
+        this.customerValidation = customerValidation;
     }
 
     @Override
     public Customer create(Customer customer) {
+        customerValidation.validate(customer, getCustomer(customer.getEmail()));
+
         customerRepository.save(customer);
 
         return customer;
@@ -56,5 +61,10 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public Customer getCustomer(Long customerId) {
         return customerRepository.getById(customerId);
+    }
+
+    @Override
+    public Customer getCustomer(String email) {
+        return customerRepository.getCustomerByEmail(email);
     }
 }
