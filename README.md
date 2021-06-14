@@ -12,7 +12,7 @@ ReadingIsGood is an online books retail firm which operates only on the Internet
 * Junit
 * Mockito
 * H2 DB
-* JPA
+* Spring Data JPA
 
 ## Quick Start
 * Clone the repository
