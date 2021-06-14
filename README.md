@@ -43,7 +43,10 @@ ReadingIsGood is an online books retail firm which operates only on the Internet
  ## Authentication
  
  You can use http://localhost:8040/authenticate to generate a web token and then update all of  your API headers to use the newly generated token. Header formate is: "Bearer %generated token%"
+ <br>
+ <br>
  username : getir
+ <br>
  password: getir
  
  
