@@ -30,7 +30,7 @@ public class OrderApiImpl implements OrderApi {
     }
 
     @Override
-    public ResponseEntity<OrderRES> getOrderById(Long orderId) {
+    public ResponseEntity<OrderRES> getOrder(Long orderId) {
         OrderSearchResult orderSearchResult = orderService.getOrderById(orderId);
 
         OrderRES orderRES = new OrderRES(orderSearchResult.getOrderList().stream().findFirst().orElse(null));
@@ -44,7 +44,7 @@ public class OrderApiImpl implements OrderApi {
     }
 
     @Override
-    public ResponseEntity<OrdersRES> getOrdersByDate(Date startDate, Date endDate) {
+    public ResponseEntity<OrdersRES> getOrders(Date startDate, Date endDate) {
         OrderSearchResult orderSearchResult = orderService.getOrdersByStartEndDates(startDate, endDate);
 
         OrdersRES orderRES = new OrdersRES(orderSearchResult.getOrderList());

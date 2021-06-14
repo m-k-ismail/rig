@@ -18,4 +18,8 @@ public class CustomerSearchResult {
     public void addAllCustomers(List<Customer> customers) {
         this.customerList.addAll(customers);
     }
+
+    public static CustomerSearchResult emptyCustomerSearchResult(){
+        return new CustomerSearchResult();
+    }
 }

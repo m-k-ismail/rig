@@ -83,16 +83,4 @@ public class OrderServiceImpl implements IOrderService {
         return orderSearchResult;
     }
 
-    @Override
-    public OrderSearchResult getOrdersByCustomerId(Long customerId, int pageLimit, int pageOffset) {
-        Pageable pagination = PageRequest.of(pageOffset, pageLimit);
-
-        List<Order> orders = orderRepository.findAllByCustomerId(customerId, pagination);
-
-        OrderSearchResult orderSearchResult = new OrderSearchResult();
-
-        orderSearchResult.addAllOrders(orders);
-
-        return orderSearchResult;
-    }
 }

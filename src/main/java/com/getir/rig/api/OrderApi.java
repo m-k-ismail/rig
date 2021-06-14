@@ -15,8 +15,8 @@ public interface OrderApi {
     ResponseEntity<OrderRES> postOrder(@RequestBody  OrderREQ body);
 
     @GetMapping("/orders/{orderId}")
-    ResponseEntity<OrderRES> getOrderById(@PathVariable Long orderId);
+    ResponseEntity<OrderRES> getOrder(@PathVariable Long orderId);
 
     @GetMapping("/orders")
-    ResponseEntity<OrdersRES> getOrdersByDate(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate);
+    ResponseEntity<OrdersRES> getOrders(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate);
 }

@@ -13,5 +13,4 @@ public interface IOrderService {
 
     OrderSearchResult getOrdersByStartEndDates(Date startDate, Date endDate);
 
-    OrderSearchResult getOrdersByCustomerId(Long customerId, int pageLimit, int pageOffset);
 }

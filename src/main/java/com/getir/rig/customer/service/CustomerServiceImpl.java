@@ -1,6 +1,6 @@
 package com.getir.rig.customer.service;
 
-import com.getir.rig.customer.validation.CustomerValidation;
+import com.getir.rig.customer.validation.CustomerValidator;
 import com.getir.rig.domain.model.customer.Customer;
 import com.getir.rig.domain.model.customer.CustomerSearchResult;
 import com.getir.rig.domain.repository.CustomerRepository;
@@ -15,25 +15,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.getir.rig.domain.model.customer.CustomerSearchResult.emptyCustomerSearchResult;
+
 @Service
 public class CustomerServiceImpl implements ICustomerService {
 
     private CustomerRepository customerRepository;
-    private CustomerValidation customerValidation;
+    private CustomerValidator customerValidator;
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerValidation customerValidation) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerValidator customerValidator) {
         this.customerRepository = customerRepository;
-        this.customerValidation = customerValidation;
+        this.customerValidator = customerValidator;
     }
 
     @Override
     public Customer create(Customer customer) {
-        customerValidation.validate(customer, getCustomer(customer.getEmail()));
+        Customer existingCustomer = getCustomer(customer.getEmail());
 
-        customerRepository.save(customer);
+        customerValidator.validate(existingCustomer);
 
-        return customer;
+        return customerRepository.save(customer);
     }
 
     @Override
@@ -47,12 +49,12 @@ public class CustomerServiceImpl implements ICustomerService {
         Pageable pagination = PageRequest.of(pageOffset, pageLimit);
         List<Customer> customers = customerRepository.getCustomerWithOrdersPagination(customerId, pagination);
 
-        CustomerSearchResult customerSearchResult = new CustomerSearchResult();
 
         if (customers.isEmpty()) {
-            return customerSearchResult;
+            return emptyCustomerSearchResult();
         }
 
+        CustomerSearchResult customerSearchResult = new CustomerSearchResult();
         customerSearchResult.addCustomer(customers.get(0));
 
         return customerSearchResult;

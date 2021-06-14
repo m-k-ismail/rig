@@ -35,7 +35,7 @@ public class CustomerApiImpl implements CustomerApi {
     public ResponseEntity<CustomerRES> getCustomerWithOrders(Long customerId, int pageOffset, int pageLimit) {
         CustomerSearchResult customerSearchResult = customerService.getCustomerOrders(customerId, pageOffset, pageLimit);
 
-        CustomerRES customerRES = new CustomerRES(customerSearchResult.getCustomerList().get(0));
+        CustomerRES customerRES = new CustomerRES(customerSearchResult.getCustomerList().stream().findFirst().orElse(null));
 
         return new ResponseEntity<>(customerRES, HttpStatus.OK);
     }

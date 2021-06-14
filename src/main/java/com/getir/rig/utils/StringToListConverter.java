@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 @Converter
 public class StringToListConverter implements AttributeConverter<List<Long>, String> {
+
     @Override
     public String convertToDatabaseColumn(List<Long> list) {
         if(list == null) return "";

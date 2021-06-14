@@ -87,7 +87,6 @@ public class Customer {
         this.address = address;
     }
 
-
     public List<Order> getOrders() {
         return orders;
     }

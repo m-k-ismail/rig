@@ -17,4 +17,8 @@ public class OrderSearchResult {
     public void addAllOrders(List<Order> orders) {
         this.orderList.addAll(orders);
     }
+
+    public static OrderSearchResult emptyOrderSearchResult(){
+        return new OrderSearchResult();
+    }
 }

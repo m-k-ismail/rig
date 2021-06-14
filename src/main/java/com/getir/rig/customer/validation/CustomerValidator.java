@@ -5,14 +5,14 @@ import com.getir.rig.exception.ErrorException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerValidation {
+public class CustomerValidator {
 
 
-    public void validate(Customer customer, Customer existingCustomer) {
-        validateDuplicateCustomer(customer, existingCustomer);
+    public void validate(Customer existingCustomer) {
+        validateDuplicateCustomer(existingCustomer);
     }
 
-    private void validateDuplicateCustomer(Customer customer, Customer existingCustomer) {
+    private void validateDuplicateCustomer(Customer existingCustomer) {
         if (existingCustomer != null) {
             throw new ErrorException("This customer already exists. Customer id: " + existingCustomer.getId());
         }
